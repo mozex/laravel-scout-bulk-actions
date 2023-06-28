@@ -41,11 +41,16 @@ You can install the package via composer:
 composer require mozex/laravel-scout-bulk-actions
 ```
 
+## Configuration
+
 You can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="laravel-scout-bulk-actions-config"
 ```
+
+After publishing the config file, a configuration file named `scout-bulk-actions.php` will be created in your `config`
+directory. You can define which directories to scan for models that are using the `Searchable` trait in this file.
 
 This is the contents of the published config file:
 
@@ -72,7 +77,73 @@ return [
 ];
 ```
 
+You can add any path to the `model_directories` array. This is where you tell Laravel Scout Bulk Actions where to look for your models. For instance, `app_path('Models')` will target the `app/Models` directory.
+
+The `model_directories` array also accepts [glob](https://www.php.net/manual/en/function.glob.php) patterns. This can be useful if your models are spread across multiple directories. For example, if you have a directory for each module in your application, and each of these module directories has a `Models` subdirectory, you could add a path like `base_path('Modules/*/Models')` to include all these `Models` directories at once.
+
+Remember to clear your config cache using `php artisan config:clear` if you make any changes to the configuration file and
+your application is in production mode.
+
 ## Usage
+
+Once the package is installed, you'll have access to three new Artisan commands:
+
+- `scout:import-all`
+- `scout:flush-all`
+- `scout:refresh`
+
+### Importing All Models
+
+To import all models into the Scout index, use the `scout:import-all` command:
+
+```php
+php artisan scout:import-all
+```
+
+This will loop through all your Scout Searchable models and import them into your Scout index.
+
+### Flushing All Models
+
+To remove all models from the Scout index, use the `scout:flush-all` command:
+
+```php
+php artisan scout:flush-all
+```
+
+This will loop through all your Scout Searchable models and flush them from your Scout index.
+
+### Refreshing Models
+
+To refresh (flush and then import) model data in your Scout index, use the `scout:refresh` command:
+
+```php
+php artisan scout:refresh
+```
+
+This will flush all models from your Scout index and then import them again.
+
+### Refreshing Specific Models
+
+The `scout:refresh` command can also be used with a specific model name. This will only refresh the index for the given
+model:
+
+```php
+php artisan scout:refresh "App\Models\Post"
+```
+
+If no model name is passed to the scout:refresh command, it will refresh all models.
+
+## How Does It Work?
+
+The Laravel Scout Extended package has been designed to automatically identify and interact with all models in your
+Laravel application that use Scout's Searchable trait.
+
+Upon execution of a command, the package will first scan the directories specified in the config file for models. This
+is done to find all models utilizing Laravel Scout's Searchable trait.
+
+Once the models have been identified, the package will then execute Scout's native import or flush commands on each of
+these models, depending on the command you've chosen to run.
+
 
 ## Testing
 
