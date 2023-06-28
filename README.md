@@ -7,7 +7,7 @@
 
 Laravel Scout Bulk Actions is a comprehensive Laravel package designed to simplify and streamline your work when dealing with many models. If you've ever found it difficult to import or flush all records of each model into the index one by one, then this package is a game changer for you.
 
-Our package alleviates the limitations of Laravel Scout's native commands `scout:import <model-name>` and `scout:flush <model-name>` by allowing you to perform these actions across all models simultaneously. This functionality can save considerable time and effort, especially when developing and testing projects with many models.
+Our package alleviates the limitations of Laravel Scout's native commands `scout:import <model>` and `scout:flush <model>` by allowing you to perform these actions across all models simultaneously. This functionality can save considerable time and effort, especially when developing and testing projects with many models.
 
 ### Features
 
