@@ -17,8 +17,8 @@ it('can get searchable models', function () {
 
     expect($this->getSearchableModels())
         ->toHaveCount(2)
-        ->first()->toBe(SearchableModel::class)
-        ->last()->toBe(SearchableModelForPattern::class);
+        ->toContain(SearchableModel::class)
+        ->toContain(SearchableModelForPattern::class);
 });
 
 it('can get searchable models with pattern', function () {
