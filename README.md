@@ -46,7 +46,7 @@ composer require mozex/laravel-scout-bulk-actions
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-scout-bulk-actions-config"
+php artisan vendor:publish --tag="scout-bulk-actions-config"
 ```
 
 After publishing the config file, a configuration file named `scout-bulk-actions.php` will be created in your `config`
