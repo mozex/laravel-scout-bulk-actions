@@ -9,7 +9,6 @@ on:
 jobs:
   pest:
     timeout-minutes: 20
-    name: Pest
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true
