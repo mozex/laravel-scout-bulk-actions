@@ -1,4 +1,4 @@
-name: Fix PHP code style issues
+name: Code Styling
 
 on:
   push:
@@ -9,7 +9,9 @@ permissions:
   contents: write
 
 jobs:
-  php-code-styling:
+  pint:
+    timeout-minutes: 10
+    name: Pint
     runs-on: ubuntu-latest
 
     steps:

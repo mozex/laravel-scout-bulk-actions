@@ -1,4 +1,4 @@
-name: PHPStan
+name: Code Analysis
 
 on:
   push:
@@ -8,7 +8,8 @@ on:
 
 jobs:
   phpstan:
-    name: phpstan
+    timeout-minutes: 10
+    name: PHPStan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,11 +17,11 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.2'
           coverage: none
 
       - name: Install composer dependencies
         uses: ramsey/composer-install@v2
 
       - name: Run PHPStan
-        run: ./vendor/bin/phpstan --error-format=github
+        run: ./vendor/bin/phpstan --memory-limit=-1 --error-format=github
