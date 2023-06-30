@@ -31,7 +31,7 @@ class RefreshCommand extends Command
             : $this->handleAll();
     }
 
-    private function handleModel(string $model): int
+    protected function handleModel(string $model): int
     {
         $flushOutput = $this->call('scout:flush', ['model' => $model]);
 
