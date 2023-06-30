@@ -10,14 +10,33 @@ Laravel Scout Bulk Actions is a comprehensive Laravel package designed to simpli
 
 Our package alleviates the limitations of Laravel Scout's native commands `scout:import <model>` and `scout:flush <model>` by allowing you to perform these actions across all models simultaneously. This functionality can save considerable time and effort, especially when developing and testing projects with many models.
 
-### Features
+- [Laravel Scout Bulk Actions](#laravel-scout-bulk-actions)
+- [Features](#features)
+- [Why Laravel Scout Bulk Actions?](#why-laravel-scout-bulk-actions)
+- [Support Us](#support-us)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+  - [Importing All Models](#importing-all-models)
+  - [Flushing All Models](#flushing-all-models)
+  - [Refreshing All Models](#refreshing-all-models)
+  - [Refreshing Specific Model](#refreshing-specific-model)
+- [How Does It Work?](#how-does-it-work)
+- [Testing](#testing)
+- [Changelog](#changelog)
+- [Contributing](#contributing)
+- [Security Vulnerabilities](#security-vulnerabilities)
+- [Credits](#credits)
+- [License](#license)
+
+## Features
 
 - `scout:import-all`: Imports all records from all models into the index at once, removing the need to run individual
 commands for each model.
 - `scout:flush-all`: Allows you to clear all records from the index for all models in one fell swoop instead of having to execute commands for each model separately.
 - `scout:refresh`: This command sequentially performs a flush and an import operation. The beauty of this command is in its flexibility. Pass a model name to this command, and it will only refresh that specific model. Leave it blank, and it refreshes every model.
 
-### Why Laravel Scout Bulk Actions?
+## Why Laravel Scout Bulk Actions?
 
 When dealing with many models, it can quickly become cumbersome to import and flush records for each model individually. This is especially true in the development phase, where such operations must be performed
 multiple times. By facilitating bulk actions on all models, our package significantly reduces the time and effort
@@ -27,7 +46,7 @@ For large-scale applications with several models, Laravel Scout Bulk Actions is 
 
 In summary, Laravel Scout Bulk Actions is designed to improve and simplify your Laravel Scout experience. It's a small package with significant benefits that have the potential to make a massive difference in your Laravel project. So why wait? Give Laravel Scout Bulk Actions a try today!
 
-## Support us
+## Support Us
 
 Creating and maintaining open-source projects requires significant time and effort. Your support will help enhance the project and enable further contributions to the Laravel community.
 
@@ -113,9 +132,9 @@ php artisan scout:flush-all
 
 This will loop through all your Scout Searchable models and flush them from your Scout index.
 
-### Refreshing Models
+### Refreshing All Models
 
-To refresh (flush and then import) model data in your Scout index, use the `scout:refresh` command:
+To refresh (flush and then import) all models data in your Scout index, use the `scout:refresh` command:
 
 ```php
 php artisan scout:refresh
@@ -123,10 +142,9 @@ php artisan scout:refresh
 
 This will flush all models from your Scout index and then import them again.
 
-### Refreshing Specific Models
+### Refreshing Specific Model
 
-The `scout:refresh` command can also be used with a specific model name. This will only refresh the index for the given
-model:
+The `scout:refresh` command can also be used with a specific model name. This will only refresh the index for the given model:
 
 ```php
 php artisan scout:refresh "App\Models\Post"
