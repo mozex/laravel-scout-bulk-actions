@@ -19,8 +19,8 @@ trait FindsSearchableModels
     {
         return collect($this->getSpecifiedFiles())
             ->keys()
-            ->map(fn (string $path) => $this->makeNamespaceFromPath($path))
-            ->filter(fn (string $namespace) => $this->isSearchableModel($namespace))
+            ->map($this->makeNamespaceFromPath(...))
+            ->filter($this->isSearchableModel(...))
             ->values();
     }
 
@@ -42,7 +42,7 @@ trait FindsSearchableModels
             ->replace(['/', '.php'], ['\\', ''])
             ->explode('\\')
             ->map(fn (string $dir) => ucfirst($dir))
-            ->prepend(config('scout-bulk-actions.namespace', ''))
+            ->prepend(config('scout-bulk-actions.namespace'))
             ->filter()
             ->implode('\\');
     }
