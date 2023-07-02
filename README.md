@@ -154,15 +154,11 @@ If no model name is passed to the scout:refresh command, it will refresh all mod
 
 ## How Does It Work?
 
-The Laravel Scout Extended package has been designed to automatically identify and interact with all models in your
-Laravel application that use Scout's Searchable trait.
+The Laravel Scout Bulk Actions package has been designed to automatically identify and interact with all models in your Laravel application that use Scout's Searchable trait.
 
-Upon execution of a command, the package will first scan the directories specified in the config file for models. This
-is done to find all models utilizing Laravel Scout's Searchable trait.
+Upon execution of a command, the package will first scan the directories specified in the config file for models. This is done to find all models utilizing Laravel Scout's Searchable trait.
 
-Once the models have been identified, the package will then execute Scout's native import or flush commands on each of
-these models, depending on the command you've chosen to run.
-
+Once the models have been identified, the package will then execute Scout's native import or flush commands on each of these models, depending on the command you've chosen to run.
 
 ## Testing
 

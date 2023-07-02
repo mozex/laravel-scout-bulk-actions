@@ -62,10 +62,7 @@
         "laravel": {
             "providers": [
                 "Mozex\\ScoutBulkActions\\ScoutBulkActionsServiceProvider"
-            ],
-            "aliases": {
-                "ScoutBulkActions": "Mozex\\ScoutBulkActions\\Facades\\ScoutBulkActions"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",
