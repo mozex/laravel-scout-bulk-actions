@@ -28,16 +28,8 @@ class FlushAllCommand extends Command
         $bar = $this->output->createProgressBar($models->count());
 
         foreach ($models as $model) {
-            // callSilently returns 0 on success and 1 on failure
-            if ($this->callSilently('scout:flush', ['model' => $model])) {
-                $this->newLine();
-                $this->error(sprintf('Flushing [%s] has been failed.', $model));
-
-                if (! $this->confirm('Do you want to continue?')) {
-                    $this->newLine();
-
-                    return self::FAILURE;
-                }
+            if (! $this->flushModel($model)) {
+                return self::FAILURE;
             }
 
             $bar->advance();
@@ -47,5 +39,24 @@ class FlushAllCommand extends Command
         $this->info('Flushing finished successfully.');
 
         return self::SUCCESS;
+    }
+
+    protected function flushModel(string $model): bool
+    {
+        if ($this->callSilently('scout:flush', [
+            'model' => $model,
+        ])) {
+            $this->newLine();
+
+            $this->error(sprintf('Flushing [%s] has been failed.', $model));
+
+            if (! $this->confirm('Do you want to continue?')) {
+                $this->newLine();
+
+                return false;
+            }
+        }
+
+        return true;
     }
 }

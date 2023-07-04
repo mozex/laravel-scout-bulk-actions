@@ -30,19 +30,8 @@ class ImportAllCommand extends Command
         $bar = $this->output->createProgressBar($models->count());
 
         foreach ($models as $model) {
-            // callSilently returns 0 on success and 1 on failure
-            if ($this->callSilently('scout:import', array_filter([
-                'model' => $model,
-                '--chunk' => $this->option('chunk'),
-            ]))) {
-                $this->newLine();
-                $this->error(sprintf('Importing [%s] has been failed.', $model));
-
-                if (! $this->confirm('Do you want to continue?')) {
-                    $this->newLine();
-
-                    return self::FAILURE;
-                }
+            if (! $this->importModel($model)) {
+                return self::FAILURE;
             }
 
             $bar->advance();
@@ -52,5 +41,25 @@ class ImportAllCommand extends Command
         $this->info('Importing finished successfully.');
 
         return self::SUCCESS;
+    }
+
+    protected function importModel(string $model): bool
+    {
+        if ($this->callSilently('scout:import', array_filter([
+            'model' => $model,
+            '--chunk' => $this->option('chunk'),
+        ]))) {
+            $this->newLine();
+
+            $this->error(sprintf('Importing [%s] has been failed.', $model));
+
+            if (! $this->confirm('Do you want to continue?')) {
+                $this->newLine();
+
+                return false;
+            }
+        }
+
+        return true;
     }
 }
