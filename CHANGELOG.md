@@ -2,6 +2,17 @@
 
 All notable changes to `laravel-scout-bulk-actions` will be documented in this file.
 
+## 1.1.0 - 2023-10-15
+
+### What's Changed
+
+- Add support for Laravel Prompts
+- Improve tests
+- Bump dependency versions
+- Refactoring
+
+**Full Changelog**: https://github.com/mozex/laravel-scout-bulk-actions/compare/1.0.2...1.1.0
+
 ## 1.0.2 - 2023-07-01
 
 - Refactoring
