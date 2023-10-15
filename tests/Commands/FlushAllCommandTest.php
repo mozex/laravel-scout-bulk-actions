@@ -11,7 +11,7 @@ it('will ask for confirmation if env is production', function (): void {
 
     $this->artisan('scout:flush-all')
         ->expectsConfirmation(
-            'Do you really wish to run this command?',
+            'Are you sure you want to run this command?',
         )
         ->doesntExpectOutput('Flushing started.')
         ->doesntExpectOutput('Flushing finished successfully.')
@@ -23,7 +23,7 @@ it('will continue when confirmation has been answered yes', function (): void {
 
     $this->artisan('scout:flush-all')
         ->expectsConfirmation(
-            'Do you really wish to run this command?',
+            'Are you sure you want to run this command?',
             'yes'
         )
         ->expectsOutput('Flushing started.')
