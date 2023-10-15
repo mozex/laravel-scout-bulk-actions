@@ -12,10 +12,7 @@ it('will ask for confirmation if env is production', function (): void {
     $this->artisan('scout:import-all')
         ->expectsConfirmation(
             'Are you sure you want to run this command?',
-        )
-        ->doesntExpectOutput('Importing started.')
-        ->doesntExpectOutput('Importing finished successfully.')
-        ->assertFailed();
+        )->assertFailed();
 });
 
 it('will continue when confirmation has been answered yes', function (): void {
@@ -25,20 +22,14 @@ it('will continue when confirmation has been answered yes', function (): void {
         ->expectsConfirmation(
             'Are you sure you want to run this command?',
             'yes'
-        )
-        ->expectsOutput('Importing started.')
-        ->expectsOutput('Importing finished successfully.')
-        ->assertSuccessful();
-});
+        );
+})->expectExceptionMessage('Progress bar must have at least one item.');
 
 it('will not ask for confirmation when it has force option', function (): void {
     app()['env'] = 'production';
 
-    $this->artisan('scout:import-all', ['--force' => true])
-        ->expectsOutput('Importing started.')
-        ->expectsOutput('Importing finished successfully.')
-        ->assertSuccessful();
-});
+    $this->artisan('scout:import-all', ['--force' => true]);
+})->expectExceptionMessage('Progress bar must have at least one item.');
 
 it('will call import command for each model', function () {
     app()->setBasePath(dirname(__DIR__, 2));

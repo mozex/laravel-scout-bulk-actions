@@ -6,6 +6,9 @@ use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 use Mozex\ScoutBulkActions\Commands\Concerns\FindsSearchableModels;
 
+use function Laravel\Prompts\error;
+use function Laravel\Prompts\progress;
+
 class FlushAllCommand extends Command
 {
     use ConfirmableTrait;
@@ -21,22 +24,22 @@ class FlushAllCommand extends Command
             return self::FAILURE;
         }
 
-        $this->info('Flushing started.');
-
         $models = $this->getSearchableModels();
 
-        $bar = $this->output->createProgressBar($models->count());
+        $progress = progress(
+            label: 'Flushing records',
+            steps: $models->count(),
+        );
 
         foreach ($models as $model) {
             if (! $this->flushModel($model)) {
                 return self::FAILURE;
             }
 
-            $bar->advance();
+            $progress->advance();
         }
 
-        $this->newLine();
-        $this->info('Flushing finished successfully.');
+        $progress->finish();
 
         return self::SUCCESS;
     }
@@ -46,15 +49,9 @@ class FlushAllCommand extends Command
         if ($this->callSilently('scout:flush', [
             'model' => $model,
         ])) {
-            $this->newLine();
+            error(sprintf('Flushing [%s] has been failed.', $model));
 
-            $this->error(sprintf('Flushing [%s] has been failed.', $model));
-
-            if (! $this->confirm('Do you want to continue?')) {
-                $this->newLine();
-
-                return false;
-            }
+            return false;
         }
 
         return true;

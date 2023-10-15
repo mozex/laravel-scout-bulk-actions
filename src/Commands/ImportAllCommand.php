@@ -6,6 +6,9 @@ use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 use Mozex\ScoutBulkActions\Commands\Concerns\FindsSearchableModels;
 
+use function Laravel\Prompts\error;
+use function Laravel\Prompts\progress;
+
 class ImportAllCommand extends Command
 {
     use ConfirmableTrait;
@@ -23,22 +26,22 @@ class ImportAllCommand extends Command
             return self::FAILURE;
         }
 
-        $this->info('Importing started.');
-
         $models = $this->getSearchableModels();
 
-        $bar = $this->output->createProgressBar($models->count());
+        $progress = progress(
+            label: 'Importing records',
+            steps: $models->count(),
+        );
 
         foreach ($models as $model) {
             if (! $this->importModel($model)) {
                 return self::FAILURE;
             }
 
-            $bar->advance();
+            $progress->advance();
         }
 
-        $this->newLine();
-        $this->info('Importing finished successfully.');
+        $progress->finish();
 
         return self::SUCCESS;
     }
@@ -49,15 +52,9 @@ class ImportAllCommand extends Command
             'model' => $model,
             '--chunk' => $this->option('chunk'),
         ]))) {
-            $this->newLine();
+            error(sprintf('Importing [%s] has been failed.', $model));
 
-            $this->error(sprintf('Importing [%s] has been failed.', $model));
-
-            if (! $this->confirm('Do you want to continue?')) {
-                $this->newLine();
-
-                return false;
-            }
+            return false;
         }
 
         return true;
