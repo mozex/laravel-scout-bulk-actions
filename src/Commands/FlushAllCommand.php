@@ -8,8 +8,8 @@ use Mozex\ScoutBulkActions\Commands\Concerns\FindsSearchableModels;
 
 class FlushAllCommand extends Command
 {
-    use FindsSearchableModels;
     use ConfirmableTrait;
+    use FindsSearchableModels;
 
     public $signature = 'scout:flush-all {--force : Force the operation to run when in production}';
 

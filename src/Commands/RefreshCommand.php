@@ -8,8 +8,8 @@ use Mozex\ScoutBulkActions\Commands\Concerns\FindsSearchableModels;
 
 class RefreshCommand extends Command
 {
-    use FindsSearchableModels;
     use ConfirmableTrait;
+    use FindsSearchableModels;
 
     public $signature = 'scout:refresh
             {model? : Class name of model to bulk import}

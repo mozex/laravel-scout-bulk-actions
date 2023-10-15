@@ -8,8 +8,8 @@ use Mozex\ScoutBulkActions\Commands\Concerns\FindsSearchableModels;
 
 class ImportAllCommand extends Command
 {
-    use FindsSearchableModels;
     use ConfirmableTrait;
+    use FindsSearchableModels;
 
     public $signature = 'scout:import-all
             {--c|chunk= : The number of records to import at a time (Defaults to configuration value: `scout.chunk.searchable`)}
