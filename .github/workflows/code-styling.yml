@@ -10,9 +10,9 @@ permissions:
 
 jobs:
   pint:
-    timeout-minutes: 10
     name: Pint
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - name: Checkout code

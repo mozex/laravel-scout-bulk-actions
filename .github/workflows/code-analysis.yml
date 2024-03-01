@@ -5,12 +5,13 @@ on:
     paths:
       - '**.php'
       - 'phpstan.neon.dist'
+      - '.github/workflows/code-analysis.yml'
 
 jobs:
   phpstan:
-    timeout-minutes: 10
     name: PHPStan
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 

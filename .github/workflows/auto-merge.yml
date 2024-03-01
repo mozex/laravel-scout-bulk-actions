@@ -8,9 +8,9 @@ permissions:
 
 jobs:
   dependabot:
-    timeout-minutes: 10
     name: Dependabot
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
 

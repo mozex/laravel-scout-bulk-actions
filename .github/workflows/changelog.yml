@@ -9,9 +9,9 @@ permissions:
 
 jobs:
   update:
-    timeout-minutes: 10
     name: Update
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - name: Checkout code

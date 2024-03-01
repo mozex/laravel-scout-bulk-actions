@@ -10,25 +10,24 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Mohammad Zahed",
+            "name": "Mozex",
             "email": "mozex@alphorld.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.1",
-        "illuminate/contracts": "^10.17",
-        "laravel/prompts": "^0.1.11",
+        "illuminate/contracts": "^10.0|^11.0",
         "laravel/scout": "^10.2",
-        "spatie/laravel-package-tools": "^1.14.0"
+        "spatie/laravel-package-tools": "^1.14.0",
+        "spatie/php-structure-discoverer": "^2.1"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^7.8",
-        "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^8.8",
-        "pestphp/pest": "^2.20",
-        "pestphp/pest-plugin-arch": "^2.0",
+        "larastan/larastan": "^2.0.1",
+        "nunomaduro/collision": "^7.8|^8.1",
+        "orchestra/testbench": "^8.21|^9.0",
+        "pestphp/pest": "^2.31",
         "pestphp/pest-plugin-laravel": "^2.0",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
@@ -47,22 +46,33 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": "@composer run prepare",
-        "clear": "@php vendor/bin/testbench package:purge-laravel-modules --ansi",
-        "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "build": [
-            "@composer run prepare",
-            "@php vendor/bin/testbench workbench:build --ansi"
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare",
+            "@composer run prepare"
         ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
         "start": [
             "Composer\\Config::disableProcessTimeout",
             "@composer run build",
             "@php vendor/bin/testbench serve"
         ],
-        "analyse": "vendor/bin/phpstan analyse",
+        "analyse": "vendor/bin/phpstan analyse --memory-limit=-1",
+        "baseline": "@analyse --allow-empty-baseline --generate-baseline",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
+        "format": "vendor/bin/pint",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/pint",
+            "@php vendor/bin/phpstan analyse"
+        ]
     },
     "config": {
         "sort-packages": true,

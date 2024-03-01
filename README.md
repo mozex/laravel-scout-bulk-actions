@@ -181,7 +181,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Mohammad Zahed](https://github.com/mozex)
+- [Mozex](https://github.com/mozex)
 - [All Contributors](../../contributors)
 
 ## License
