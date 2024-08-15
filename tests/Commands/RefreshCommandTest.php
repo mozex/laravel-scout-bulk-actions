@@ -39,9 +39,9 @@ it('will not ask for confirmation when it has force option', function (): void {
 })->expectExceptionMessage('Progress bar must have at least one item.');
 
 it('will call flush all and import all command', function () {
-    $refreshCommand = new RefreshCommand();
-    $flushAllCommand = new FlushAllCommand();
-    $importAllCommand = new ImportAllCommand();
+    $refreshCommand = new RefreshCommand;
+    $flushAllCommand = new FlushAllCommand;
+    $importAllCommand = new ImportAllCommand;
 
     $console = Mockery::mock(ConsoleApplication::class)->makePartial();
     $console->__construct();
@@ -81,9 +81,9 @@ it('will call flush all and import all command', function () {
 });
 
 it('will call flush and import command if model is specified', function () {
-    $refreshCommand = new RefreshCommand();
-    $flushCommand = new FlushCommand();
-    $importCommand = new ImportCommand();
+    $refreshCommand = new RefreshCommand;
+    $flushCommand = new FlushCommand;
+    $importCommand = new ImportCommand;
 
     $console = Mockery::mock(ConsoleApplication::class)->makePartial();
     $console->__construct();
@@ -123,9 +123,9 @@ it('will call flush and import command if model is specified', function () {
 });
 
 it('will not call import all if flush all fails', function () {
-    $refreshCommand = new RefreshCommand();
-    $flushAllCommand = new FlushAllCommand();
-    $importAllCommand = new ImportAllCommand();
+    $refreshCommand = new RefreshCommand;
+    $flushAllCommand = new FlushAllCommand;
+    $importAllCommand = new ImportAllCommand;
 
     $console = Mockery::mock(ConsoleApplication::class)->makePartial();
     $console->__construct();
@@ -163,9 +163,9 @@ it('will not call import all if flush all fails', function () {
 });
 
 it('will not call import if flush fails while model is specified', function () {
-    $refreshCommand = new RefreshCommand();
-    $flushCommand = new FlushCommand();
-    $importCommand = new ImportCommand();
+    $refreshCommand = new RefreshCommand;
+    $flushCommand = new FlushCommand;
+    $importCommand = new ImportCommand;
 
     $console = Mockery::mock(ConsoleApplication::class)->makePartial();
     $console->__construct();

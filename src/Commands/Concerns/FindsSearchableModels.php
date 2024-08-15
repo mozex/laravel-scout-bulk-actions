@@ -29,7 +29,7 @@ trait FindsSearchableModels
      */
     protected function getSpecifiedFiles(): Finder
     {
-        return (new Finder())->in(config('scout-bulk-actions.model_directories'))->files();
+        return (new Finder)->in(config('scout-bulk-actions.model_directories'))->files();
     }
 
     /**
