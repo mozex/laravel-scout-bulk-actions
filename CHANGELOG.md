@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-scout-bulk-actions` will be documented in this file.
 
+## 1.2.4 - 2024-10-08
+
+### What's Changed
+
+* Update laravel/prompts requirement from ^0.1.15|^0.2.0 to ^0.1.15|^0.2.0|^0.3.0
+
+**Full Changelog**: https://github.com/mozex/laravel-scout-bulk-actions/compare/1.2.3...1.2.4
+
 ## 1.2.3 - 2024-09-28
 
 - Fix `laravel/prompts` dependency
