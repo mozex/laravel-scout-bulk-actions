@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-scout-bulk-actions` will be documented in this file.
 
+## 1.3.0 - 2025-02-25
+
+### What's Changed
+
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/mozex/laravel-scout-bulk-actions/pull/13
+* Add Laravel 12 compatibility by @mozex in https://github.com/mozex/laravel-scout-bulk-actions/pull/14
+
+**Full Changelog**: https://github.com/mozex/laravel-scout-bulk-actions/compare/1.2.4...1.3.0
+
 ## 1.2.4 - 2024-10-08
 
 ### What's Changed
