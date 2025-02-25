@@ -1,61 +1,59 @@
 name: Tests
 
-on:
-  push:
-    paths:
-      - '**.php'
-      - '.github/workflows/tests.yml'
-      - 'phpunit.xml.dist'
-      - 'composer.json'
-      - 'composer.lock'
+on: ['push', 'pull_request']
 
 jobs:
-  pest:
+  ci:
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 5
     strategy:
       fail-fast: true
       matrix:
         os: [ubuntu-latest, windows-latest]
-        php: ["8.1", "8.2", "8.3"]
-        laravel: ["10.*", "11.*"]
-        stability: [prefer-lowest, prefer-stable]
+        php: [ 8.1, 8.2, 8.3, 8.4 ]
+        laravel: [ 12.*, 11.*, 10.*, 9.* ]
+        dependency-version: [ prefer-lowest, prefer-stable ]
         include:
-          - laravel: "10.*"
+          - laravel: 10.*
             testbench: "^8.21"
             carbon: "^2.67"
-          - laravel: "11.*"
-            testbench: "9.*"
+          - laravel: 11.*
+            testbench: 9.*
+            carbon: "^3.0"
+          - laravel: 12.*
+            testbench: 10.*
             carbon: "^3.0"
         exclude:
-          - laravel: "11.*"
-            php: "8.1"
+          - php: 8.1
+            laravel: 11.*
+          - php: 8.1
+            laravel: 12.*
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
-
+    name: Tests P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, fileinfo
-          coverage: none
+    - name: Checkout
+      uses: actions/checkout@v4
 
-      - name: Setup problem matchers
-        run: |
-          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+    - name: Cache dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.composer/cache/files
+        key: dependencies-php-${{ matrix.php }}-L${{ matrix.laravel }}-${{ matrix.dependency-version }}-composer-${{ hashFiles('composer.json') }}
 
-      - name: Install dependencies
-        run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nesbot/carbon:${{ matrix.carbon }}" --no-interaction --no-update
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: dom, mbstring, zip, fileinfo
+        coverage: none
 
-      - name: List Installed Dependencies
-        run: composer show -D
+    - name: Install dependencies
+      run: |
+        composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nesbot/carbon:${{ matrix.carbon }}" --no-interaction --no-update
+        composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
-      - name: Execute tests
-        run: vendor/bin/pest --ci
+    - name: Install Composer dependencies
+      run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
+
+    - name: Integration Tests
+      run: php ./vendor/bin/pest
