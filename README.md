@@ -1,9 +1,8 @@
 # Laravel Scout Bulk Actions
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/mozex/laravel-scout-bulk-actions/tests.yml?branch=main&label=Tests&style=flat-square)](https://github.com/mozex/laravel-scout-bulk-actions/actions/workflows/tests.yml)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/mozex/laravel-scout-bulk-actions/code-styling.yml?branch=main&label=Code%20Styling&style=flat-square)](https://github.com/mozex/laravel-scout-bulk-actions/actions/workflows/code-styling.yml)
-[![GitHub Code Analysis Action Status](https://img.shields.io/github/actions/workflow/status/mozex/laravel-scout-bulk-actions/code-analysis.yml?branch=main&label=Code%20Analysis&style=flat-square)](https://github.com/mozex/laravel-scout-bulk-actions/actions/workflows/code-analysis.yml)
+[![GitHub Tests Workflow Status](https://img.shields.io/github/actions/workflow/status/mozex/laravel-scout-bulk-actions/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/mozex/laravel-scout-bulk-actions/actions/workflows/tests.yml)
+[![License](https://img.shields.io/github/license/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
 
 Laravel Scout Bulk Actions is a comprehensive Laravel package designed to simplify and streamline your work when dealing with many models. If you've ever found it difficult to import or flush all records of each model into the index one by one, then this package is a game changer for you.
