@@ -50,10 +50,7 @@ jobs:
     - name: Install dependencies
       run: |
         composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "nesbot/carbon:${{ matrix.carbon }}" --no-interaction --no-update
-        composer update --${{ matrix.stability }} --prefer-dist --no-interaction
-
-    - name: Install Composer dependencies
-      run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
+        composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
     - name: Integration Tests
       run: php ./vendor/bin/pest
