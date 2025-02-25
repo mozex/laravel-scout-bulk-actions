@@ -1,3 +1,0 @@
-providers:
-  - Workbench\App\Providers\WorkbenchServiceProvider
-  - Mozex\ScoutBulkActions\ScoutBulkActionsServiceProvider
