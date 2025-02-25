@@ -21,7 +21,7 @@ jobs:
             carbon: "^3.0"
           - laravel: "12.*"
             testbench: "10.*"
-            carbon: "^3.0"
+            carbon: "^3.8.4"
         exclude:
           - php: 8.1
             laravel: 11.*
