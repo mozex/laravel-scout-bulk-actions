@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-scout-bulk-actions` will be documented in this file.
 
+## 1.3.1 - 2026-03-04
+
+### What's Changed
+
+* bump dependencies
+* drop php 8.1 support
+* drop laravel 10 support
+
+**Full Changelog**: https://github.com/mozex/laravel-scout-bulk-actions/compare/1.3.0...1.3.1
+
 ## 1.3.0 - 2025-02-25
 
 ### What's Changed
