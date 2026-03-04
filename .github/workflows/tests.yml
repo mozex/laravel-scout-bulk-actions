@@ -16,8 +16,6 @@ jobs:
         exclude:
           - php: 8.2
             pest: 4
-          - laravel: 11
-            pest: 4
 
     name: Tests P${{ matrix.php }} - P${{ matrix.pest }} - L${{ matrix.laravel }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
     steps:
