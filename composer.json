@@ -26,7 +26,7 @@
         "orchestra/testbench": "^8.21|^9.2|^10.0",
         "pestphp/pest": "^2.35.1|^3.0.0",
         "pestphp/pest-plugin-arch": "^2.7.0|^3.0.0",
-        "phpstan/phpstan": "^1.12.4",
+        "phpstan/phpstan": "^2.1.17",
         "spatie/ray": "^1.26"
     },
     "autoload": {
