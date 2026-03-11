@@ -12,7 +12,7 @@ Our package alleviates the limitations of Laravel Scout's native commands `scout
 - [Laravel Scout Bulk Actions](#laravel-scout-bulk-actions)
 - [Features](#features)
 - [Why Laravel Scout Bulk Actions?](#why-laravel-scout-bulk-actions)
-- [Support Us](#support-us)
+- [Support This Project](#support-this-project)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
@@ -45,13 +45,13 @@ For large-scale applications with several models, Laravel Scout Bulk Actions is 
 
 In summary, Laravel Scout Bulk Actions is designed to improve and simplify your Laravel Scout experience. It's a small package with significant benefits that have the potential to make a massive difference in your Laravel project. So why wait? Give Laravel Scout Bulk Actions a try today!
 
-## Support Us
+## Support This Project
 
-Creating and maintaining open-source projects requires significant time and effort. Your support will help enhance the project and enable further contributions to the Laravel community.
+I maintain this package along with [several other open-source PHP packages](https://github.com/mozex?tab=repositories&q=&type=source) used by thousands of developers every day.
 
-Sponsorship can be made through the [GitHub Sponsors](https://github.com/sponsors/mozex) program. Just click the "**[Sponsor](https://github.com/sponsors/mozex)**" button at the top of this repository. Any amount is greatly appreciated, even a contribution as small as $1 can make a big difference and will go directly towards developing and improving this package.
+If my packages save you time or help your business, consider [**sponsoring my work on GitHub Sponsors**](https://github.com/sponsors/mozex). Your support lets me keep these packages updated, respond to issues quickly, and ship new features.
 
-Thank you for considering sponsoring. Your support truly makes a difference!
+Business sponsors get logo placement in package READMEs. [**See sponsorship tiers →**](https://github.com/sponsors/mozex)
 
 ## Installation
 
