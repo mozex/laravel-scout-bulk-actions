@@ -2,9 +2,18 @@
     "name": "mozex/laravel-scout-bulk-actions",
     "description": "A Laravel Scout extension for bulk importing and flushing of all models.",
     "keywords": [
-        "mozex",
         "laravel",
-        "laravel-scout-bulk-actions"
+        "scout",
+        "bulk",
+        "batch",
+        "search",
+        "import",
+        "indexing",
+        "searchable",
+        "full-text-search",
+        "mass-import",
+        "bulk-import",
+        "eloquent"
     ],
     "homepage": "https://github.com/mozex/laravel-scout-bulk-actions",
     "license": "MIT",
