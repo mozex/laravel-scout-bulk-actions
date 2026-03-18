@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-scout-bulk-actions` will be documented in this file.
 
+## 1.4.0 - 2026-03-18
+
+* add laravel 13 support
+
+**Full Changelog**: https://github.com/mozex/laravel-scout-bulk-actions/compare/1.3.1...1.4.0
+
 ## 1.3.1 - 2026-03-04
 
 ### What's Changed
