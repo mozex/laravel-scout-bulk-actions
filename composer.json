@@ -1,19 +1,21 @@
 {
     "name": "mozex/laravel-scout-bulk-actions",
-    "description": "Bulk import and flush all Laravel Scout searchable models with a single command — auto-discovers models across your project.",
+    "description": "Import, flush, and queue-import all your Laravel Scout searchable models at once. Auto-discovers models, runs in bulk, tracks progress.",
     "keywords": [
         "laravel",
         "scout",
         "bulk",
-        "batch",
-        "search",
         "import",
+        "flush",
+        "queue",
+        "search",
         "indexing",
         "searchable",
-        "full-text-search",
-        "mass-import",
         "bulk-import",
-        "eloquent"
+        "queue-import",
+        "reindex",
+        "eloquent",
+        "artisan"
     ],
     "homepage": "https://github.com/mozex/laravel-scout-bulk-actions",
     "license": "MIT",
