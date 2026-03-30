@@ -29,7 +29,7 @@
         "php": "^8.2.0",
         "laravel/framework": "^11.29|^12.12|^13.0",
         "laravel/prompts": "^0.1.15|^0.2.0|^0.3.4",
-        "laravel/scout": "^10.12.2",
+        "laravel/scout": "^10.17",
         "spatie/laravel-package-tools": "^1.19.0"
     },
     "require-dev": {
