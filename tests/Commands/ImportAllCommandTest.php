@@ -23,13 +23,13 @@ it('will continue when confirmation has been answered yes', function (): void {
             'Are you sure you want to run this command?',
             'yes'
         );
-})->expectExceptionMessage('Progress bar must have at least one item.');
+})->throws(InvalidArgumentException::class, 'Progress bar must have at least one item.');
 
 it('will not ask for confirmation when it has force option', function (): void {
     app()['env'] = 'production';
 
     $this->artisan('scout:import-all', ['--force' => true]);
-})->expectExceptionMessage('Progress bar must have at least one item.');
+})->throws(InvalidArgumentException::class, 'Progress bar must have at least one item.');
 
 it('will call import command for each model', function () {
     app()->setBasePath(dirname(__DIR__, 2));
