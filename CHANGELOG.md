@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-scout-bulk-actions` will be documented in this file.
 
+## 1.5.0 - 2026-03-30
+
+### What's Changed
+
+* Add `scout:queue-import-all` command for queued bulk imports across all searchable models
+* Bump minimum `laravel/scout` requirement from `^10.12.2` to `^10.17`
+* Rewrite README documentation
+
+**Full Changelog**: https://github.com/mozex/laravel-scout-bulk-actions/compare/1.4.0...1.5.0
+
 ## 1.4.0 - 2026-03-18
 
 * add laravel 13 support
