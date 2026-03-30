@@ -5,45 +5,9 @@
 [![License](https://img.shields.io/github/license/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
 
-Laravel Scout Bulk Actions is a comprehensive Laravel package designed to simplify and streamline your work when dealing with many models. If you've ever found it difficult to import or flush all records of each model into the index one by one, then this package is a game changer for you.
+Laravel Scout's built-in commands work on one model at a time. If your project has ten searchable models, that's ten separate `scout:import` calls every time you need to rebuild your indexes. This package fixes that.
 
-Our package alleviates the limitations of Laravel Scout's native commands `scout:import <model>` and `scout:flush <model>` by allowing you to perform these actions across all models simultaneously. This functionality can save considerable time and effort, especially when developing and testing projects with many models.
-
-- [Laravel Scout Bulk Actions](#laravel-scout-bulk-actions)
-- [Features](#features)
-- [Why Laravel Scout Bulk Actions?](#why-laravel-scout-bulk-actions)
-- [Support This Project](#support-this-project)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-  - [Importing All Models](#importing-all-models)
-  - [Flushing All Models](#flushing-all-models)
-  - [Refreshing All Models](#refreshing-all-models)
-  - [Refreshing Specific Model](#refreshing-specific-model)
-- [How Does It Work?](#how-does-it-work)
-- [Testing](#testing)
-- [Changelog](#changelog)
-- [Contributing](#contributing)
-- [Security Vulnerabilities](#security-vulnerabilities)
-- [Credits](#credits)
-- [License](#license)
-
-## Features
-
-- `scout:import-all`: Imports all records from all models into the index at once, removing the need to run individual
-commands for each model.
-- `scout:flush-all`: Allows you to clear all records from the index for all models in one fell swoop instead of having to execute commands for each model separately.
-- `scout:refresh`: This command sequentially performs a flush and an import operation. The beauty of this command is in its flexibility. Pass a model name to this command, and it will only refresh that specific model. Leave it blank, and it refreshes every model.
-
-## Why Laravel Scout Bulk Actions?
-
-When dealing with many models, it can quickly become cumbersome to import and flush records for each model individually. This is especially true in the development phase, where such operations must be performed
-multiple times. By facilitating bulk actions on all models, our package significantly reduces the time and effort
-required for these operations.
-
-For large-scale applications with several models, Laravel Scout Bulk Actions is an indispensable tool that dramatically enhances your productivity and efficiency. Enjoy less time typing commands and more time crafting your Laravel masterpiece. Your testing phase will thank you for it!
-
-In summary, Laravel Scout Bulk Actions is designed to improve and simplify your Laravel Scout experience. It's a small package with significant benefits that have the potential to make a massive difference in your Laravel project. So why wait? Give Laravel Scout Bulk Actions a try today!
+Scout Bulk Actions auto-discovers every model that uses the `Searchable` trait and lets you import, flush, or refresh all of them with a single command. It also supports queued bulk imports for projects where synchronous indexing is too slow.
 
 ## Support This Project
 
@@ -55,41 +19,24 @@ Business sponsors get logo placement in package READMEs. [**See sponsorship tier
 
 ## Installation
 
-You can install the package via composer:
-
 ```bash
 composer require mozex/laravel-scout-bulk-actions
 ```
 
+That's it. The package auto-registers its service provider via Laravel's package discovery.
+
 ## Configuration
 
-You can publish the config file with:
+Publish the config file:
 
 ```bash
 php artisan vendor:publish --tag="scout-bulk-actions-config"
 ```
 
-After publishing the config file, a configuration file named `scout-bulk-actions.php` will be created in your `config`
-directory. You can define which directories to scan for models that are using the `Searchable` trait in this file.
-
-This is the contents of the published config file:
+This creates `config/scout-bulk-actions.php`:
 
 ```php
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Searchable Model Directories
-    |--------------------------------------------------------------------------
-    |
-    | Define the directories for Laravel Scout to scan for models that use the
-    | Searchable trait. This configuration accepts an array of directory paths
-    | where your models reside. Glob patterns are supported for these paths,
-    | allowing you to include multiple directories. Laravel Scout Bulk
-    | Actions will automatically import or flush these models.
-    |
-    */
-
     'model_directories' => [
         app_path('Models'),
         // base_path('Modules/*/Models'),
@@ -97,68 +44,96 @@ return [
 ];
 ```
 
-You can add any path to the `model_directories` array. This is where you tell Laravel Scout Bulk Actions where to look for your models. For instance, `app_path('Models')` will target the `app/Models` directory.
+The `model_directories` array tells the package where to look for your searchable models. By default it scans `app/Models`, which covers most Laravel projects.
 
-The `model_directories` array also accepts [glob](https://www.php.net/manual/en/function.glob.php) patterns. This can be useful if your models are spread across multiple directories. For example, if you have a directory for each module in your application, and each of these module directories has a `Models` subdirectory, you could add a path like `base_path('Modules/*/Models')` to include all these `Models` directories at once.
+Glob patterns work here too. If you're using a modular architecture, something like `base_path('Modules/*/Models')` will scan the `Models` directory inside every module at once.
 
-Remember to clear your config cache using `php artisan config:clear` if you make any changes to the configuration file and
-your application is in production mode.
+After changing the config in production, run `php artisan config:clear` to pick up the new values.
 
-## Usage
+## Commands
 
-Once the package is installed, you'll have access to three new Artisan commands:
+### `scout:import-all`
 
-- `scout:import-all`
-- `scout:flush-all`
-- `scout:refresh`
+Imports all discovered searchable models into the search index:
 
-### Importing All Models
-
-To import all models into the Scout index, use the `scout:import-all` command:
-
-```php
+```bash
 php artisan scout:import-all
 ```
 
-This will loop through all your Scout Searchable models and import them into your Scout index.
+You can control the chunk size (how many records are sent per batch) with the `--chunk` option:
 
-### Flushing All Models
+```bash
+php artisan scout:import-all --chunk=200
+```
 
-To remove all models from the Scout index, use the `scout:flush-all` command:
+If omitted, it falls back to the `scout.chunk.searchable` config value.
 
-```php
+### `scout:flush-all`
+
+Removes all records from the search index for every discovered model:
+
+```bash
 php artisan scout:flush-all
 ```
 
-This will loop through all your Scout Searchable models and flush them from your Scout index.
+### `scout:queue-import-all`
 
-### Refreshing All Models
+For large datasets, synchronous imports can be slow. This command dispatches queued jobs that split each model's records into chunks by ID range, the same approach Scout's native `scout:queue-import` uses, but applied across all your models at once:
 
-To refresh (flush and then import) all models data in your Scout index, use the `scout:refresh` command:
+```bash
+php artisan scout:queue-import-all
+```
 
-```php
+Options:
+
+```bash
+# Set the chunk size per job
+php artisan scout:queue-import-all --chunk=500
+
+# Specify which queue to dispatch jobs to
+php artisan scout:queue-import-all --queue=indexing
+```
+
+This is the fastest way to rebuild indexes for projects with many models and millions of rows.
+
+### `scout:refresh`
+
+Flushes then imports, in one step. Useful when you need a clean re-index:
+
+```bash
 php artisan scout:refresh
 ```
 
-This will flush all models from your Scout index and then import them again.
+You can also target a single model:
 
-### Refreshing Specific Model
-
-The `scout:refresh` command can also be used with a specific model name. This will only refresh the index for the given model:
-
-```php
+```bash
 php artisan scout:refresh "App\Models\Post"
 ```
 
-If no model name is passed to the scout:refresh command, it will refresh all models.
+When no model is specified, it runs `scout:flush-all` followed by `scout:import-all` under the hood. The `--chunk` option works here too.
 
-## How Does It Work?
+### Production Safety
 
-The Laravel Scout Bulk Actions package has been designed to automatically identify and interact with all models in your Laravel application that use Scout's Searchable trait.
+All commands ask for confirmation when `APP_ENV` is `production`. To skip the prompt (for CI pipelines or automated scripts), pass `--force`:
 
-Upon execution of a command, the package will first scan the directories specified in the config file for models. This is done to find all models utilizing Laravel Scout's Searchable trait.
+```bash
+php artisan scout:import-all --force
+php artisan scout:flush-all --force
+php artisan scout:queue-import-all --force
+php artisan scout:refresh --force
+```
 
-Once the models have been identified, the package will then execute Scout's native import or flush commands on each of these models, depending on the command you've chosen to run.
+## How It Works
+
+The package scans the directories you've configured using Symfony's Finder component. For each PHP file it finds, it:
+
+1. Converts the file path to a fully qualified class name.
+2. Checks via Reflection that the class is a concrete (non-abstract) Eloquent model.
+3. Verifies the class uses Laravel Scout's `Searchable` trait.
+
+Models that pass all three checks are collected, and the chosen Scout command (`scout:import`, `scout:flush`, or `scout:queue-import`) runs against each one. A progress bar tracks the operation so you can see where things stand.
+
+If any single model fails during the operation, the command stops immediately and returns a failure exit code.
 
 ## Testing
 
