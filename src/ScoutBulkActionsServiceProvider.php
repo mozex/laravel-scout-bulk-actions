@@ -4,6 +4,7 @@ namespace Mozex\ScoutBulkActions;
 
 use Mozex\ScoutBulkActions\Commands\FlushAllCommand;
 use Mozex\ScoutBulkActions\Commands\ImportAllCommand;
+use Mozex\ScoutBulkActions\Commands\QueueImportAllCommand;
 use Mozex\ScoutBulkActions\Commands\RefreshCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -18,6 +19,7 @@ class ScoutBulkActionsServiceProvider extends PackageServiceProvider
             ->hasCommands([
                 FlushAllCommand::class,
                 ImportAllCommand::class,
+                QueueImportAllCommand::class,
                 RefreshCommand::class,
             ]);
     }
