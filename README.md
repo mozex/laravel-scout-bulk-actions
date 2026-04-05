@@ -135,12 +135,6 @@ Models that pass all three checks are collected, and the chosen Scout command (`
 
 If any single model fails during the operation, the command stops immediately and returns a failure exit code.
 
-## Testing
-
-```bash
-composer test
-```
-
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
