@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
 [![GitHub Tests Workflow Status](https://img.shields.io/github/actions/workflow/status/mozex/laravel-scout-bulk-actions/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/mozex/laravel-scout-bulk-actions/actions/workflows/tests.yml)
+[![Docs](https://img.shields.io/badge/docs-mozex.dev-10B981?style=flat-square)](https://mozex.dev/docs/laravel-scout-bulk-actions/v1)
 [![License](https://img.shields.io/github/license/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
 
@@ -9,15 +10,33 @@ Laravel Scout's built-in commands work on one model at a time. If your project h
 
 Scout Bulk Actions auto-discovers every model that uses the `Searchable` trait and lets you import, flush, or refresh all of them with a single command. It also supports queued bulk imports for projects where synchronous indexing is too slow.
 
+> **[Read the full documentation at mozex.dev](https://mozex.dev/docs/laravel-scout-bulk-actions/v1)**: searchable docs, version requirements, detailed changelog, and more.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Commands](#commands)
+  - [scout:import-all](#scoutimport-all)
+  - [scout:flush-all](#scoutflush-all)
+  - [scout:queue-import-all](#scoutqueue-import-all)
+  - [scout:refresh](#scoutrefresh)
+  - [Production Safety](#production-safety)
+- [How It Works](#how-it-works)
+
 ## Support This Project
 
-I maintain this package along with [several other open-source PHP packages](https://github.com/mozex?tab=repositories&q=&type=source) used by thousands of developers every day.
+I maintain this package along with [several other open-source PHP packages](https://mozex.dev/docs) used by thousands of developers every day.
 
 If my packages save you time or help your business, consider [**sponsoring my work on GitHub Sponsors**](https://github.com/sponsors/mozex). Your support lets me keep these packages updated, respond to issues quickly, and ship new features.
 
 Business sponsors get logo placement in package READMEs. [**See sponsorship tiers →**](https://github.com/sponsors/mozex)
 
 ## Installation
+
+> **Requires [PHP 8.2+](https://php.net/releases/)** - see [all version requirements](https://mozex.dev/docs/laravel-scout-bulk-actions/v1/requirements)
+
+Install the package via Composer:
 
 ```bash
 composer require mozex/laravel-scout-bulk-actions
@@ -135,22 +154,15 @@ Models that pass all three checks are collected, and the chosen Scout command (`
 
 If any single model fails during the operation, the command stops immediately and returns a failure exit code.
 
-## Changelog
+## Resources
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Visit the [documentation site](https://mozex.dev/docs/laravel-scout-bulk-actions/v1) for searchable docs auto-updated from this repository.
 
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
-## Credits
-
-- [Mozex](https://github.com/mozex)
-- [All Contributors](../../contributors)
+- **[Requirements](https://mozex.dev/docs/laravel-scout-bulk-actions/v1/requirements)**: PHP, Laravel, and dependency versions
+- **[Changelog](https://mozex.dev/docs/laravel-scout-bulk-actions/v1/changelog)**: Release history with linked pull requests and diffs
+- **[Contributing](https://mozex.dev/docs/laravel-scout-bulk-actions/v1/contributing)**: Development setup, code quality, and PR guidelines
+- **[Questions & Issues](https://mozex.dev/docs/laravel-scout-bulk-actions/v1/questions-and-issues)**: Bug reports, feature requests, and help
+- **[Security](mailto:hello@mozex.dev)**: Report vulnerabilities directly via email
 
 ## License
 
