@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-scout-bulk-actions` will be documented in this file.
 
+## 1.6.0 - 2026-04-09
+
+### What's Changed
+
+* Add [Laravel Boost](https://laravel.com/docs/13.x/boost) skill for AI-assisted development
+
+AI coding assistants can now load context about this package on-demand through Laravel Boost. The skill covers all four bulk commands, model discovery configuration, glob pattern setup for modular apps, and common pitfalls like the direct `Searchable` trait use requirement. Run `php artisan boost:update` after upgrading to pick it up.
+
+**Full Changelog**: https://github.com/mozex/laravel-scout-bulk-actions/compare/1.5.2...1.6.0
+
 ## 1.5.2 - 2026-03-30
 
 * update composer.json
