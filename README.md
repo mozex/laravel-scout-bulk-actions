@@ -158,6 +158,7 @@ If any single model fails during the operation, the command stops immediately an
 
 Visit the [documentation site](https://mozex.dev/docs/laravel-scout-bulk-actions/v1) for searchable docs auto-updated from this repository.
 
+- **[AI Integration](https://mozex.dev/docs/laravel-scout-bulk-actions/v1/ai-integration)**: Use this package with AI coding assistants via Context7 and Laravel Boost
 - **[Requirements](https://mozex.dev/docs/laravel-scout-bulk-actions/v1/requirements)**: PHP, Laravel, and dependency versions
 - **[Changelog](https://mozex.dev/docs/laravel-scout-bulk-actions/v1/changelog)**: Release history with linked pull requests and diffs
 - **[Contributing](https://mozex.dev/docs/laravel-scout-bulk-actions/v1/contributing)**: Development setup, code quality, and PR guidelines
