@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-scout-bulk-actions` will be documented in this file.
 
+## 1.7.0 - 2026-04-22
+
+* Add Laravel Scout 11 support
+
+**Full Changelog**: https://github.com/mozex/laravel-scout-bulk-actions/compare/1.6.0...1.7.0
+
 ## 1.6.0 - 2026-04-09
 
 ### What's Changed
