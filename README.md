@@ -1,7 +1,7 @@
 # Laravel Scout Bulk Actions
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
-[![GitHub Tests Workflow Status](https://img.shields.io/github/actions/workflow/status/mozex/laravel-scout-bulk-actions/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/mozex/laravel-scout-bulk-actions/actions/workflows/tests.yml)
+[![GitHub Checks Workflow Status](https://img.shields.io/github/actions/workflow/status/mozex/laravel-scout-bulk-actions/checks.yml?branch=main&label=checks&style=flat-square)](https://github.com/mozex/laravel-scout-bulk-actions/actions/workflows/checks.yml)
 [![Docs](https://img.shields.io/badge/docs-mozex.dev-10B981?style=flat-square)](https://mozex.dev/docs/laravel-scout-bulk-actions/v1)
 [![License](https://img.shields.io/github/license/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
