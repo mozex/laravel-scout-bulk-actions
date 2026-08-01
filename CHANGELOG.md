@@ -2,6 +2,22 @@
 
 All notable changes to `laravel-scout-bulk-actions` will be documented in this file.
 
+## 1.8.0 - 2026-08-01
+
+### What's Changed
+
+* Add `--fresh` option to `scout:import-all` for a per-model flush before each import
+* Add `--order` option to `scout:queue-import-all` to control the direction ranges are queued in
+* Bump minimum `laravel/scout` requirement from `^10.17` to `^10.18`
+
+`scout:import-all --fresh` forwards Scout's own `--fresh` flag, flushing each model from the index immediately before that model is imported. This is not the same as `scout:refresh`, which empties every index first and only then starts importing. With `--fresh`, a model is missing from the index for the length of its own import and no longer, so the rest of your search keeps serving results while the rebuild runs.
+
+`scout:queue-import-all --order=desc` queues each model's ID range from the highest ID downward, so recent records are indexed early in a long rebuild instead of last. This forwards the `--order` option added in Laravel Scout 11.4 and requires that version. The value is validated as `asc` or `desc` before any job is dispatched, because Scout reports an invalid order with a zero exit code.
+
+The `laravel/scout` floor moved to `^10.18` because `scout:import` gained `--fresh` in that release. 10.17.x was the only version in the previous range without it.
+
+**Full Changelog**: https://github.com/mozex/laravel-scout-bulk-actions/compare/1.7.0...1.8.0
+
 ## 1.7.0 - 2026-04-22
 
 * Add Laravel Scout 11 support
