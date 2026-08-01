@@ -87,6 +87,14 @@ php artisan scout:import-all --chunk=200
 
 If omitted, it falls back to the `scout.chunk.searchable` config value.
 
+Pass `--fresh` to flush each model from the index right before that model is imported:
+
+```bash
+php artisan scout:import-all --fresh
+```
+
+This isn't the same as `scout:refresh`, which empties every index first and only then starts importing. With `--fresh`, a model is missing from the index for the length of its own import and no longer, so the rest of your search keeps working while the rebuild runs. Requires Laravel Scout 10.18 or newer.
+
 ### `scout:flush-all`
 
 Removes all records from the search index for every discovered model:
@@ -111,7 +119,12 @@ php artisan scout:queue-import-all --chunk=500
 
 # Specify which queue to dispatch jobs to
 php artisan scout:queue-import-all --queue=indexing
+
+# Queue the highest IDs first
+php artisan scout:queue-import-all --order=desc
 ```
+
+By default the jobs are queued from the lowest ID upward, which means your oldest rows get indexed first. `--order=desc` flips that. On a rebuild that takes hours, this puts recent content back into search early instead of last. The value has to be `asc` or `desc`, and the option requires Laravel Scout 11.4 or newer.
 
 This is the fastest way to rebuild indexes for projects with many models and millions of rows.
 

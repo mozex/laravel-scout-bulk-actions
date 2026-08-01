@@ -16,6 +16,7 @@ class QueueImportAllCommand extends Command
 
     public $signature = 'scout:queue-import-all
             {--c|chunk= : The number of records to queue in a single job (Defaults to configuration value: `scout.chunk.searchable`)}
+            {--order= : The order in which ranges should be queued, `asc` or `desc` (Requires Laravel Scout 11.4+)}
             {--queue= : The queue that should be used (Defaults to configuration value: `scout.queue.queue`)}
             {--force : Force the operation to run when in production}';
 
@@ -23,6 +24,14 @@ class QueueImportAllCommand extends Command
 
     public function handle(): int
     {
+        $order = $this->option('order');
+
+        if (filled($order) && ! in_array($order, ['asc', 'desc'], strict: true)) {
+            error('The order option must be either "asc" or "desc".');
+
+            return self::FAILURE;
+        }
+
         if (! $this->confirmToProceed()) {
             return self::FAILURE;
         }
@@ -52,6 +61,7 @@ class QueueImportAllCommand extends Command
         if ($this->callSilently('scout:queue-import', array_filter([
             'model' => $model,
             '--chunk' => $this->option('chunk'),
+            '--order' => $this->option('order'),
             '--queue' => $this->option('queue'),
         ]))) {
             error(sprintf('Queue importing [%s] has been failed.', $model));

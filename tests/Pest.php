@@ -8,8 +8,18 @@ use Symfony\Component\Console\Output\NullOutput;
 
 uses(TestCase::class)->in(__DIR__);
 
-function mockExpectedCommandWithModels(string $command, string $expectedCommand, array $models): int
-{
+/**
+ * @param  array<int, string>  $models
+ * @param  array<string, mixed>  $input  Options passed to the bulk command being run.
+ * @param  array<int, string>  $expectedOptions  Options expected to reach the wrapped Scout command.
+ */
+function mockExpectedCommandWithModels(
+    string $command,
+    string $expectedCommand,
+    array $models,
+    array $input = [],
+    array $expectedOptions = [],
+): int {
     $commandInstance = new $command;
     $expectedCommandInstance = new $expectedCommand;
 
@@ -31,10 +41,15 @@ function mockExpectedCommandWithModels(string $command, string $expectedCommand,
         $mockedExpectedCommand->shouldReceive('run')
             ->once()
             ->with(
-                new InputMatcher($quote.$model.$quote.' '.$quote.$expectedCommandInstance->getName().$quote),
+                new InputMatcher(
+                    collect([$quote.$model.$quote])
+                        ->merge($expectedOptions)
+                        ->push($quote.$expectedCommandInstance->getName().$quote)
+                        ->implode(' ')
+                ),
                 Mockery::any(),
             );
     }
 
-    return $commandInstance->run(new ArrayInput([]), new NullOutput);
+    return $commandInstance->run(new ArrayInput($input), new NullOutput);
 }

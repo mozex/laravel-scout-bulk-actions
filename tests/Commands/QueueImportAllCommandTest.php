@@ -48,3 +48,28 @@ it('will call queue import command for each model', function () {
 
     expect($output)->toEqual(0);
 });
+
+it('will forward the order option to the queue import command', function () {
+    app()->setBasePath(dirname(__DIR__, 2));
+
+    config()->set('scout-bulk-actions.model_directories', [
+        base_path('tests/Fixtures'),
+    ]);
+
+    config()->set('scout-bulk-actions.namespace', 'Mozex\\ScoutBulkActions');
+
+    $output = mockExpectedCommandWithModels(
+        command: QueueImportAllCommand::class,
+        expectedCommand: QueueImportCommand::class,
+        models: $this->getSearchableModels()->toArray(),
+        input: ['--order' => 'desc'],
+        expectedOptions: ['--order=desc'],
+    );
+
+    expect($output)->toEqual(0);
+});
+
+it('will fail when the order option is not asc or desc', function (): void {
+    $this->artisan('scout:queue-import-all', ['--order' => 'sideways'])
+        ->assertFailed();
+});

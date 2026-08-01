@@ -26,10 +26,12 @@ Discovers all searchable models and imports each one into the search index.
 ```bash
 php artisan scout:import-all
 php artisan scout:import-all --chunk=500
+php artisan scout:import-all --fresh
 php artisan scout:import-all --force
 ```
 
 - `--chunk=N` (`-c N`): Records per batch. Falls back to `scout.chunk.searchable` config if omitted.
+- `--fresh`: Flushes each model from the index immediately before importing that model. Unlike `scout:refresh`, which flushes every model first and then imports, a model is only missing from the index for the duration of its own import. Requires Laravel Scout 10.18+.
 - `--force`: Skips the production confirmation prompt.
 
 ### scout:flush-all
@@ -50,9 +52,11 @@ Same as `scout:import-all`, but dispatches queued jobs instead of running synchr
 ```bash
 php artisan scout:queue-import-all
 php artisan scout:queue-import-all --chunk=500 --queue=scout
+php artisan scout:queue-import-all --order=desc
 ```
 
 - `--chunk=N` (`-c N`): Records per queued job. Falls back to `scout.chunk.searchable` config if omitted.
+- `--order=asc|desc`: Direction each model's ID range is queued in. Defaults to `asc` (oldest rows first) on Scout's side. Use `desc` to index the highest IDs first so recent content becomes searchable early in a long rebuild. Any other value fails the command before anything is dispatched. Requires Laravel Scout 11.4+.
 - `--queue=NAME`: Target queue name. Falls back to `scout.queue.queue` config if omitted.
 - `--force`: Skips the production confirmation prompt.
 

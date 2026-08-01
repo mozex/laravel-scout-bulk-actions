@@ -48,3 +48,23 @@ it('will call import command for each model', function () {
 
     expect($output)->toEqual(0);
 });
+
+it('will forward the fresh option to the import command', function () {
+    app()->setBasePath(dirname(__DIR__, 2));
+
+    config()->set('scout-bulk-actions.model_directories', [
+        base_path('tests/Fixtures'),
+    ]);
+
+    config()->set('scout-bulk-actions.namespace', 'Mozex\\ScoutBulkActions');
+
+    $output = mockExpectedCommandWithModels(
+        command: ImportAllCommand::class,
+        expectedCommand: ImportCommand::class,
+        models: $this->getSearchableModels()->toArray(),
+        input: ['--fresh' => true],
+        expectedOptions: ['--fresh=1'],
+    );
+
+    expect($output)->toEqual(0);
+});
