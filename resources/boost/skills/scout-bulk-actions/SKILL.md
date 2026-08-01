@@ -31,7 +31,7 @@ php artisan scout:import-all --force
 ```
 
 - `--chunk=N` (`-c N`): Records per batch. Falls back to `scout.chunk.searchable` config if omitted.
-- `--fresh`: Flushes each model from the index immediately before importing that model. Unlike `scout:refresh`, which flushes every model first and then imports, a model is only missing from the index for the duration of its own import. Requires Laravel Scout 10.18+.
+- `--fresh`: Flushes each model from the index immediately before importing that model. Unlike `scout:refresh`, which flushes every model first and then imports, a model is only missing from the index for the duration of its own import.
 - `--force`: Skips the production confirmation prompt.
 
 ### scout:flush-all

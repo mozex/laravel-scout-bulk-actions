@@ -93,7 +93,7 @@ Pass `--fresh` to flush each model from the index right before that model is imp
 php artisan scout:import-all --fresh
 ```
 
-This isn't the same as `scout:refresh`, which empties every index first and only then starts importing. With `--fresh`, a model is missing from the index for the length of its own import and no longer, so the rest of your search keeps working while the rebuild runs. Requires Laravel Scout 10.18 or newer.
+This isn't the same as `scout:refresh`, which empties every index first and only then starts importing. With `--fresh`, a model is missing from the index for the length of its own import and no longer, so the rest of your search keeps working while the rebuild runs.
 
 ### `scout:flush-all`
 

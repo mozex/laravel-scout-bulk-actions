@@ -16,7 +16,7 @@ class ImportAllCommand extends Command
 
     public $signature = 'scout:import-all
             {--c|chunk= : The number of records to import at a time (Defaults to configuration value: `scout.chunk.searchable`)}
-            {--fresh : Flush each model from the index before importing it (Requires Laravel Scout 10.18+)}
+            {--fresh : Flush each model from the index before importing it}
             {--force : Force the operation to run when in production}';
 
     public $description = 'Import all models into the search index.';
