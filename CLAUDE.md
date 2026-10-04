@@ -39,6 +39,8 @@ Three Artisan commands share model-discovery logic via the `FindsSearchableModel
 
 **Safety**: Commands use `ConfirmableTrait` for production confirmation, bypassed with `--force`.
 
+**`scout-bulk-actions:install` is spatie's `hasInstallCommand()`; the GitHub star question is ours** (`ScoutBulkActionsServiceProvider::askToStar()`, wired through `endWith()`), because spatie's `askToStarRepoOnGitHub()` has fixed generic wording and opens the browser through `exec()`, which a test can't fake. The question names the package and defaults to yes. A run nobody can answer (`--no-interaction`, or no terminal on stdin, as with CI and AI agents) skips the question, takes that default, and prints a star note so the browser tab is explained. `isInteractive()` mirrors Laravel's own prompt rule, including treating unit tests as interactive, which keeps the tests deterministic. The question goes through `$command->confirm()`, never Laravel Prompts' `confirm()`: spatie publishes with `callSilently('vendor:publish')`, and that nested command reconfigures Prompts' global output to a `NullOutput`, so a Prompts question afterwards is invisible while it still waits for Enter. The faked console in tests hides this. The browser opens through the `Process` facade, so the tests fake it on every OS. Opening is best effort: on Linux, `xdg-open` is backgrounded through `sh`, because without a detected desktop it runs the browser in the foreground, which would hold the command until the browser closed and then trip the 60-second process timeout. Any failure on the interactive path prints the URL instead.
+
 ## Testing
 
 - **Framework**: Pest (supports v3 and v4)

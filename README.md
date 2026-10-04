@@ -46,13 +46,13 @@ That's it. The package auto-registers its service provider via Laravel's package
 
 ## Configuration
 
-Publish the config file:
+Run the install command:
 
 ```bash
-php artisan vendor:publish --tag="scout-bulk-actions-config"
+php artisan scout-bulk-actions:install
 ```
 
-This creates `config/scout-bulk-actions.php`:
+It publishes `config/scout-bulk-actions.php`:
 
 ```php
 return [

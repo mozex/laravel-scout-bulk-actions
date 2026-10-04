@@ -83,10 +83,10 @@ When refreshing all models, the command passes `--force` to the sub-commands aut
 
 ## Model Discovery
 
-The package finds models by scanning directories listed in `config/scout-bulk-actions.php`. Publish the config:
+The package finds models by scanning directories listed in `config/scout-bulk-actions.php`. Publish it with the install command:
 
 ```bash
-php artisan vendor:publish --tag=scout-bulk-actions-config
+php artisan scout-bulk-actions:install
 ```
 
 ### Configuration
