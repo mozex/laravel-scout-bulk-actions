@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-scout-bulk-actions` will be documented in this file.
 
+## 1.8.1 - 2026-10-04
+
+### What's Changed
+
+* Improve package setup
+
+**Full Changelog**: https://github.com/mozex/laravel-scout-bulk-actions/compare/1.8.0...1.8.1
+
 ## 1.8.0 - 2026-08-01
 
 ### What's Changed
