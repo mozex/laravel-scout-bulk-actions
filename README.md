@@ -1,3 +1,5 @@
+![Laravel Scout Bulk Actions](https://raw.githubusercontent.com/mozex/laravel-scout-bulk-actions/main/art/banner.png)
+
 # Laravel Scout Bulk Actions
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mozex/laravel-scout-bulk-actions.svg?style=flat-square)](https://packagist.org/packages/mozex/laravel-scout-bulk-actions)
