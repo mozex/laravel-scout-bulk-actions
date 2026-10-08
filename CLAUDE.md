@@ -52,4 +52,4 @@ Three Artisan commands share model-discovery logic via the `FindsSearchableModel
 
 ## CI Matrix
 
-PHP 8.2–8.5 × Laravel 11–12 × Pest 3–4 (with prefer-lowest and prefer-stable).
+PHP 8.2–8.5 × Laravel 12–13 × Pest 3–4 (with prefer-lowest and prefer-stable).
