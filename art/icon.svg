@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="laravel-scout-bulk-actions-tile" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#18181b"/>
+      <stop offset="1" stop-color="#09090b"/>
+    </linearGradient>
+    <radialGradient id="laravel-scout-bulk-actions-glow" cx="256" cy="232" r="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#10b981" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="laravel-scout-bulk-actions-edge" x1="96" y1="0" x2="416" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#34d399" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#34d399" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="laravel-scout-bulk-actions-glyph" x1="0" y1="96" x2="0" y2="416" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#laravel-scout-bulk-actions-tile)"/>
+  <rect width="512" height="512" rx="96" fill="url(#laravel-scout-bulk-actions-glow)"/>
+  <rect x="2" y="2" width="508" height="508" rx="94" stroke="#27272a" stroke-width="4"/>
+  <path d="M96 3H416" stroke="url(#laravel-scout-bulk-actions-edge)" stroke-width="2"/>
+  <path d="M104 268L256 344L408 268M104 332L256 408L408 332" stroke="url(#laravel-scout-bulk-actions-glyph)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M256 116L408 192L256 268L104 192Z" fill="url(#laravel-scout-bulk-actions-glyph)" stroke="url(#laravel-scout-bulk-actions-glyph)" stroke-width="28" stroke-linejoin="round"/>
+  <path d="M276 134L220 204H258L238 250L296 176H258Z" fill="#0c0c0e" stroke="#0c0c0e" stroke-width="8" stroke-linejoin="round"/>
+</svg>
