@@ -1,4 +1,4 @@
-![Laravel Scout Bulk Actions](https://raw.githubusercontent.com/mozex/laravel-scout-bulk-actions/main/art/banner.png)
+[![Laravel Scout Bulk Actions](https://raw.githubusercontent.com/mozex/laravel-scout-bulk-actions/main/art/banner.png)](https://mozex.dev/docs/laravel-scout-bulk-actions)
 
 # Laravel Scout Bulk Actions
 
